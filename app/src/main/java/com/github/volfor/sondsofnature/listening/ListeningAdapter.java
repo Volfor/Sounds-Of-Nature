@@ -71,7 +71,7 @@ public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.View
         }
 
         void bindCard(GameCard card) {
-            binding.setGameCard(card);
+            binding.setItem(new CardItemViewModel(card));
         }
     }
 
