@@ -67,10 +67,6 @@ public class Quiz {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (player != null) {
-                    player.release();
-                }
-
                 player = MediaPlayer.create(context, correctCard.getSounds()
                         .get(new Random().nextInt(correctCard.getSounds().size())));
                 player.start();
@@ -79,6 +75,8 @@ public class Quiz {
     }
 
     public boolean check(GameCard answer) {
+        Utils.releasePlayer(player);
+
         if (answer.equals(correctCard)) {
             correctCount++;
             return true;

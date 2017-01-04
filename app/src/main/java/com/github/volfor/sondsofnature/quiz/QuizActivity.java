@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.databinding.ActivityQuizBinding;
 import com.github.volfor.sondsofnature.databinding.WrongAnswerDialogBinding;
+import com.github.volfor.sondsofnature.events.AnswerEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,7 +36,6 @@ public class QuizActivity extends AppCompatActivity {
 
         adapter = new QuizPagerAdapter(getSupportFragmentManager());
         binding.quizPager.setAdapter(adapter);
-
     }
 
     @Override

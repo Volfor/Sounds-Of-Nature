@@ -2,6 +2,7 @@ package com.github.volfor.sondsofnature;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 
 import com.github.volfor.sondsofnature.models.GameCard;
 
@@ -56,6 +57,12 @@ public class Utils {
         }
 
         return cards;
+    }
+
+    public static void releasePlayer(MediaPlayer player) {
+        if (player != null) {
+            player.release();
+        }
     }
 
 }

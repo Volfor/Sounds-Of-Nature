@@ -4,6 +4,7 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.view.View;
 
+import com.github.volfor.sondsofnature.events.AnswerEvent;
 import com.github.volfor.sondsofnature.models.GameCard;
 import com.github.volfor.sondsofnature.models.Quiz;
 

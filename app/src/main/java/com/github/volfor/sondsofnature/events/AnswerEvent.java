@@ -1,4 +1,4 @@
-package com.github.volfor.sondsofnature.quiz;
+package com.github.volfor.sondsofnature.events;
 
 import com.github.volfor.sondsofnature.models.GameCard;
 

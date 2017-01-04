@@ -2,10 +2,12 @@ package com.github.volfor.sondsofnature.listening;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.media.MediaPlayer;
 import android.view.View;
 
+import com.github.volfor.sondsofnature.events.ListenEvent;
 import com.github.volfor.sondsofnature.models.GameCard;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Random;
 
@@ -33,10 +35,8 @@ public class CardItemViewModel extends BaseObservable {
     }
 
     public void onItemClick(View v) {
-        MediaPlayer player = MediaPlayer.create(v.getContext(), card.getSounds()
-                .get(new Random().nextInt(card.getSounds().size())));
-
-        player.start();
+        int soundId = card.getSounds().get(new Random().nextInt(card.getSounds().size()));
+        EventBus.getDefault().post(new ListenEvent(soundId));
     }
 
 }
