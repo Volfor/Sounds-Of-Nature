@@ -1,23 +1,22 @@
 package com.github.volfor.sondsofnature.listening;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.DrawableRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.github.volfor.sondsofnature.models.GameCard;
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.databinding.ItemCardBinding;
+import com.github.volfor.sondsofnature.models.GameCard;
 
 import java.util.List;
 
-import static com.github.volfor.sondsofnature.Utils.*;
+import static com.github.volfor.sondsofnature.Utils.getAnimalCards;
+import static com.github.volfor.sondsofnature.Utils.getTransportCards;
+import static com.github.volfor.sondsofnature.listening.ListeningActivity.ANIMALS;
+import static com.github.volfor.sondsofnature.listening.ListeningActivity.TRANSPORT;
 
 /**
  * Created by Volfor on 03.01.2017.
@@ -25,9 +24,6 @@ import static com.github.volfor.sondsofnature.Utils.*;
  */
 
 public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.ViewHolder> {
-
-    public static final int ANIMALS = 546;
-    public static final int TRANSPORT = 547;
 
     private List<GameCard> cards;
 
@@ -70,13 +66,6 @@ public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.View
         void bindCard(GameCard card) {
             binding.setItem(new CardItemViewModel(card));
         }
-    }
-
-    @BindingAdapter("image")
-    public static void bindImage(ImageView v, @DrawableRes int id) {
-        Glide.with(v.getContext())
-                .load(id)
-                .into(v);
     }
 
 }

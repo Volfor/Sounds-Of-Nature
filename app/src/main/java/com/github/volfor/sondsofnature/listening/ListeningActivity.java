@@ -23,6 +23,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class ListeningActivity extends AppCompatActivity {
 
+    public static final int ANIMALS = 546;
+    public static final int TRANSPORT = 547;
+
     private ActivityListeningBinding binding;
     private MediaPlayer player;
 
@@ -44,13 +47,13 @@ public class ListeningActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         Bundle bundle = new Bundle();
-        bundle.putInt("type", ListeningAdapter.ANIMALS);
+        bundle.putInt("type", ANIMALS);
 
         ListeningFragment animalsFragment = new ListeningFragment();
         animalsFragment.setArguments(bundle);
 
         bundle = new Bundle();
-        bundle.putInt("type", ListeningAdapter.TRANSPORT);
+        bundle.putInt("type", TRANSPORT);
 
         ListeningFragment transportFragment = new ListeningFragment();
         transportFragment.setArguments(bundle);
