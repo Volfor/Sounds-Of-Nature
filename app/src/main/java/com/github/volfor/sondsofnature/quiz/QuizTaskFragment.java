@@ -33,13 +33,19 @@ public class QuizTaskFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final Quiz quiz = new Quiz();
-        quiz.create(getContext(), 0);
+        Quiz quiz = Quiz.getInstance();
+        quiz.createTask(getContext());
 
         QuizTaskAdapter adapter = new QuizTaskAdapter(quiz);
 
         binding.quizList.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.quizList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Quiz.clear();
     }
 
 }

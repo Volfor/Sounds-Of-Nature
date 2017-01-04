@@ -12,12 +12,12 @@ import java.util.List;
  * http://github.com/Volfor
  */
 
-public class QuizAdapter extends FragmentPagerAdapter {
+public class QuizPagerAdapter extends FragmentPagerAdapter {
 
     private int PAGE_COUNT = 0;
     private List<Fragment> fragments = new ArrayList<>();
 
-    public QuizAdapter(FragmentManager fm) {
+    public QuizPagerAdapter(FragmentManager fm) {
         super(fm);
         addQuizTask();
     }

@@ -18,42 +18,45 @@ import java.util.Random;
 
 public class Quiz {
 
-    private int difficulty = 0; //1, 2, 3
+    private static Quiz instance = null;
 
+    public enum Difficulty {
+        EASY,
+        NORMAL,
+        HARD,
+        EXTRA
+    }
+
+    private int correctCount = 0;
     private GameCard correctCard;
     private List<GameCard> wrongCards;
 
-//    private void generate(Context context) {
-//        List<GameCard> animals = Utils.getAnimalCards(context);
-//
-//        correctIndex = new Random().nextInt(animals.size());
-//        correctCard = animals.get(correctIndex);
-//
-//        wrongCards = new ArrayList<>();
-//
-//        int wrongIndex = new Random().nextInt(animals.size());
-//        while (wrongIndex == correctIndex) {
-//            wrongIndex = new Random().nextInt(animals.size());
-//        }
-//
-//        wrongCards.add(animals.get(wrongIndex));
-//    }
+    private MediaPlayer player;
 
-    public void create(Context context, int difficulty) {
+    public static Quiz getInstance() {
+        if (instance == null) {
+            instance = new Quiz();
+        }
+        return instance;
+    }
+
+    public void createTask(Context context) {
         List<GameCard> animals = Utils.getAnimalCards(context);
         Collections.shuffle(animals);
 
         correctCard = animals.get(0);
         wrongCards = new ArrayList<>();
 
-        switch (difficulty) {
-            case 2:
+        switch (getDifficulty()) {
+            case EXTRA:
                 wrongCards.add(animals.get(1));
-            case 1:
                 wrongCards.add(animals.get(2));
-            case 0:
+            case HARD:
                 wrongCards.add(animals.get(3));
-                break;
+            case NORMAL:
+                wrongCards.add(animals.get(4));
+            case EASY:
+                wrongCards.add(animals.get(5));
             default:
         }
 
@@ -64,7 +67,11 @@ public class Quiz {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                MediaPlayer player = MediaPlayer.create(context, correctCard.getSounds()
+                if (player != null) {
+                    player.release();
+                }
+
+                player = MediaPlayer.create(context, correctCard.getSounds()
                         .get(new Random().nextInt(correctCard.getSounds().size())));
                 player.start();
             }
@@ -72,11 +79,12 @@ public class Quiz {
     }
 
     public boolean check(GameCard answer) {
-        return answer.getName().equals(correctCard.getName());
-    }
-
-    public boolean check2(GameCard answer) {
-        return answer.equals(correctCard);
+        if (answer.equals(correctCard)) {
+            correctCount++;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public GameCard getCorrectCard() {
@@ -95,8 +103,20 @@ public class Quiz {
         return cards;
     }
 
-//    public boolean check(int position) {
+    public Difficulty getDifficulty() {
+        if (correctCount < 5) {
+            return Difficulty.EASY;
+        } else if (correctCount < 10) {
+            return Difficulty.NORMAL;
+        } else if (correctCount < 15) {
+            return Difficulty.HARD;
+        } else {
+            return Difficulty.EXTRA;
+        }
+    }
 
-//    }
+    public static void clear() {
+        instance = null;
+    }
 
 }

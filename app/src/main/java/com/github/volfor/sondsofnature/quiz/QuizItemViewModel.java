@@ -30,7 +30,7 @@ public class QuizItemViewModel extends BaseObservable {
     }
 
     public void onItemClick(View v) {
-        EventBus.getDefault().post(new AnswerEvent(quiz.check2(card)));
+        EventBus.getDefault().post(new AnswerEvent(quiz.check(card), quiz.getCorrectCard()));
     }
 
 }
