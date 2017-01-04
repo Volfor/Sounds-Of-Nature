@@ -26,6 +26,8 @@ public class QuizTaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_quiz_task, container, false);
+        binding.setModel(this);
+
         return binding.getRoot();
     }
 
@@ -40,6 +42,10 @@ public class QuizTaskFragment extends Fragment {
 
         binding.quizList.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.quizList.setAdapter(adapter);
+    }
+
+    public void onReplayClick(View v) {
+        Quiz.getInstance().replay();
     }
 
     @Override

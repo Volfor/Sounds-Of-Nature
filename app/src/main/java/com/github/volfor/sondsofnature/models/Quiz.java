@@ -60,10 +60,10 @@ public class Quiz {
             default:
         }
 
-        start(context);
+        play(context);
     }
 
-    public void start(final Context context) {
+    public void play(final Context context) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -72,6 +72,12 @@ public class Quiz {
                 player.start();
             }
         }, 500);
+    }
+
+    public void replay() {
+        if (player != null) {
+            player.start();
+        }
     }
 
     public boolean check(GameCard answer) {
