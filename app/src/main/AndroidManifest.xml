@@ -18,6 +18,10 @@
         <activity
             android:name=".listening.ListeningActivity"
             android:label="Listening" />
+
+        <activity
+            android:name=".quiz.QuizActivity"
+            android:label="Quiz" />
     </application>
 
 </manifest>

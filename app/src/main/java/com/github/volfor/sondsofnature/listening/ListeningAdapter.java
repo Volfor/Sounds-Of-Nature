@@ -1,7 +1,6 @@
 package com.github.volfor.sondsofnature.listening;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.DrawableRes;
@@ -12,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.github.volfor.sondsofnature.GameCard;
+import com.github.volfor.sondsofnature.models.GameCard;
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.databinding.ItemCardBinding;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.volfor.sondsofnature.Utils.*;
 
 /**
  * Created by Volfor on 03.01.2017.
@@ -30,17 +30,14 @@ public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.View
     public static final int TRANSPORT = 547;
 
     private List<GameCard> cards;
-    private Context context;
 
     public ListeningAdapter(Context context, int type) {
-        this.context = context;
-
         switch (type) {
             case ANIMALS:
-                getAnimalCards();
+                cards = getAnimalCards(context);
                 break;
             case TRANSPORT:
-                getTransportCards();
+                cards = getTransportCards(context);
                 break;
             default:
         }
@@ -73,61 +70,6 @@ public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.View
         void bindCard(GameCard card) {
             binding.setItem(new CardItemViewModel(card));
         }
-    }
-
-    private void getAnimalCards() {
-        cards = new ArrayList<>();
-        cards.add(getCard("Tiger"));
-        cards.add(getCard("Monkey"));
-        cards.add(getCard("Sheep"));
-        cards.add(getCard("Pig"));
-        cards.add(getCard("Lion"));
-        cards.add(getCard("Horse"));
-        cards.add(getCard("Frog"));
-        cards.add(getCard("Elephant"));
-        cards.add(getCard("Dog"));
-        cards.add(getCard("Cow"));
-        cards.add(getCard("Chicken"));
-        cards.add(getCard("Cat"));
-    }
-
-    private void getTransportCards() {
-        cards = new ArrayList<>();
-        cards.add(getCard("Airplane"));
-        cards.add(getCard("Ambulance"));
-        cards.add(getCard("Bicycle"));
-        cards.add(getCard("Bus"));
-        cards.add(getCard("Car"));
-        cards.add(getCard("Fire engine"));
-        cards.add(getCard("Helicopter"));
-        cards.add(getCard("Motorcycle"));
-        cards.add(getCard("Police car"));
-        cards.add(getCard("Rocket"));
-        cards.add(getCard("Ship"));
-        cards.add(getCard("Train"));
-    }
-
-    private GameCard getCard(String name) {
-        GameCard card = new GameCard();
-        card.setName(name);
-
-        name = name.toLowerCase().replace(" ", "_");
-
-        Resources resources = context.getResources();
-        List<Integer> sounds = new ArrayList<>();
-
-        int id = resources.getIdentifier(name + "_1", "raw", context.getPackageName());
-        int i = 2;
-        while (id != 0) {
-            sounds.add(id);
-            id = resources.getIdentifier(name + "_" + i, "raw", context.getPackageName());
-            i++;
-        }
-
-        card.setImage(resources.getIdentifier(name, "drawable", context.getPackageName()));
-        card.setSounds(sounds);
-
-        return card;
     }
 
     @BindingAdapter("image")

@@ -5,7 +5,7 @@ import android.databinding.Bindable;
 import android.media.MediaPlayer;
 import android.view.View;
 
-import com.github.volfor.sondsofnature.GameCard;
+import com.github.volfor.sondsofnature.models.GameCard;
 
 import java.util.Random;
 

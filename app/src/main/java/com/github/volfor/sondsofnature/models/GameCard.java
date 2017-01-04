@@ -1,4 +1,4 @@
-package com.github.volfor.sondsofnature;
+package com.github.volfor.sondsofnature.models;
 
 import java.util.List;
 
