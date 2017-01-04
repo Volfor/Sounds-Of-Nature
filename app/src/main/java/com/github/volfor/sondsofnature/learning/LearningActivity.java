@@ -1,19 +1,19 @@
-package com.github.volfor.sondsofnature.listening;
+package com.github.volfor.sondsofnature.learning;
 
 import android.databinding.DataBindingUtil;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 
+import com.github.volfor.sondsofnature.EventActivity;
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.Utils;
-import com.github.volfor.sondsofnature.ViewPagerAdapter;
-import com.github.volfor.sondsofnature.databinding.ActivityListeningBinding;
+import com.github.volfor.sondsofnature.databinding.ActivityLearningBinding;
 import com.github.volfor.sondsofnature.events.ListenEvent;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
@@ -21,23 +21,25 @@ import org.greenrobot.eventbus.Subscribe;
  * http://github.com/Volfor
  */
 
-public class ListeningActivity extends AppCompatActivity {
+public class LearningActivity extends EventActivity {
 
     public static final int ANIMALS = 546;
     public static final int TRANSPORT = 547;
 
-    private ActivityListeningBinding binding;
+    private ActivityLearningBinding binding;
     private MediaPlayer player;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_listening);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_learning);
 
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.include.toolbar);
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         setupViewPager(binding.pager);
         binding.tabLayout.setupWithViewPager(binding.pager);
@@ -49,13 +51,13 @@ public class ListeningActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt("type", ANIMALS);
 
-        ListeningFragment animalsFragment = new ListeningFragment();
+        LearningFragment animalsFragment = new LearningFragment();
         animalsFragment.setArguments(bundle);
 
         bundle = new Bundle();
         bundle.putInt("type", TRANSPORT);
 
-        ListeningFragment transportFragment = new ListeningFragment();
+        LearningFragment transportFragment = new LearningFragment();
         transportFragment.setArguments(bundle);
 
         adapter.addFragment(animalsFragment, "Animals");
@@ -65,16 +67,21 @@ public class ListeningActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
+    public void onStop() {
+        super.onStop();
+        Utils.releasePlayer(player);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-        Utils.releasePlayer(player);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Subscribe

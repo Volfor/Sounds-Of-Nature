@@ -1,4 +1,4 @@
-package com.github.volfor.sondsofnature.listening;
+package com.github.volfor.sondsofnature.learning;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -15,19 +15,19 @@ import java.util.List;
 
 import static com.github.volfor.sondsofnature.Utils.getAnimalCards;
 import static com.github.volfor.sondsofnature.Utils.getTransportCards;
-import static com.github.volfor.sondsofnature.listening.ListeningActivity.ANIMALS;
-import static com.github.volfor.sondsofnature.listening.ListeningActivity.TRANSPORT;
+import static com.github.volfor.sondsofnature.learning.LearningActivity.ANIMALS;
+import static com.github.volfor.sondsofnature.learning.LearningActivity.TRANSPORT;
 
 /**
  * Created by Volfor on 03.01.2017.
  * http://github.com/Volfor
  */
 
-public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.ViewHolder> {
+public class LearningItemsAdapter extends RecyclerView.Adapter<LearningItemsAdapter.ViewHolder> {
 
     private List<GameCard> cards;
 
-    public ListeningAdapter(Context context, int type) {
+    public LearningItemsAdapter(Context context, int type) {
         switch (type) {
             case ANIMALS:
                 cards = getAnimalCards(context);
@@ -64,7 +64,7 @@ public class ListeningAdapter extends RecyclerView.Adapter<ListeningAdapter.View
         }
 
         void bindCard(GameCard card) {
-            binding.setItem(new CardItemViewModel(card));
+            binding.setItem(new LearningItemViewModel(card));
         }
     }
 

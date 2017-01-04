@@ -6,17 +6,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.view.MenuItem;
 
 import com.bumptech.glide.Glide;
+import com.github.volfor.sondsofnature.EventActivity;
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.databinding.ActivityQuizBinding;
 import com.github.volfor.sondsofnature.databinding.WrongAnswerDialogBinding;
 import com.github.volfor.sondsofnature.events.AnswerEvent;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
@@ -24,36 +24,41 @@ import org.greenrobot.eventbus.Subscribe;
  * http://github.com/Volfor
  */
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends EventActivity {
 
-    ActivityQuizBinding binding;
-    QuizPagerAdapter adapter;
+    private ActivityQuizBinding binding;
+    private QuizPagerAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
 
+        setSupportActionBar(binding.include.toolbar);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         adapter = new QuizPagerAdapter(getSupportFragmentManager());
         binding.quizPager.setAdapter(adapter);
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+        }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
+        return super.onOptionsItemSelected(item);
     }
 
     @Subscribe
     public void onAnsweredEvent(AnswerEvent e) {
-        Toast.makeText(this, "check: " + e.answer, Toast.LENGTH_SHORT).show();
-
         if (e.answer) {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -68,7 +73,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void showWrongAnswerDialog(@DrawableRes int correctImage) {
-        WrongAnswerDialogBinding binding = DataBindingUtil.inflate(this.getLayoutInflater(), R.layout.wrong_answer_dialog, null, false);
+        WrongAnswerDialogBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.wrong_answer_dialog, null, false);
 
         Glide.with(this)
                 .load(correctImage)

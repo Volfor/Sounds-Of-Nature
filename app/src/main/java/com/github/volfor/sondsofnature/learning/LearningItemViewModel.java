@@ -1,4 +1,4 @@
-package com.github.volfor.sondsofnature.listening;
+package com.github.volfor.sondsofnature.learning;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -16,11 +16,11 @@ import java.util.Random;
  * http://github.com/Volfor
  */
 
-public class CardItemViewModel extends BaseObservable {
+public class LearningItemViewModel extends BaseObservable {
 
     private GameCard card;
 
-    public CardItemViewModel(GameCard card) {
+    public LearningItemViewModel(GameCard card) {
         this.card = card;
     }
 

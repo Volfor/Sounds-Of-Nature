@@ -17,8 +17,9 @@ import java.util.Random;
  */
 
 public class Quiz {
-
     private static Quiz instance = null;
+
+    public static final int TASK_COUNT = 20;
 
     public enum Difficulty {
         EASY,
@@ -123,11 +124,12 @@ public class Quiz {
     }
 
     public boolean isFinished() {
-        return correctCount >= 20;
+        return correctCount >= TASK_COUNT;
     }
 
-    public static void clear() {
+    public void clear() {
         instance = null;
+        Utils.releasePlayer(player);
     }
 
 }

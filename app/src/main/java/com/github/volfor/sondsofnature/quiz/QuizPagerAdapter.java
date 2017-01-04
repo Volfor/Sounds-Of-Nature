@@ -14,7 +14,7 @@ import java.util.List;
 
 public class QuizPagerAdapter extends FragmentPagerAdapter {
 
-    private int PAGE_COUNT = 0;
+    private int pageCount = 0;
     private List<Fragment> fragments = new ArrayList<>();
 
     public QuizPagerAdapter(FragmentManager fm) {
@@ -23,7 +23,7 @@ public class QuizPagerAdapter extends FragmentPagerAdapter {
     }
 
     public void addQuizTask() {
-        PAGE_COUNT++;
+        pageCount++;
         fragments.add(new QuizTaskFragment());
         notifyDataSetChanged();
     }
@@ -35,6 +35,6 @@ public class QuizPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return pageCount;
     }
 }

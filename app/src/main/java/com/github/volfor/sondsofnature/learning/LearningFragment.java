@@ -1,4 +1,4 @@
-package com.github.volfor.sondsofnature.listening;
+package com.github.volfor.sondsofnature.learning;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -17,9 +17,9 @@ import com.github.volfor.sondsofnature.databinding.FragmentListeningBinding;
  * http://github.com/Volfor
  */
 
-public class ListeningFragment extends Fragment {
+public class LearningFragment extends Fragment {
 
-    FragmentListeningBinding binding;
+    private FragmentListeningBinding binding;
 
     @Nullable
     @Override
@@ -33,7 +33,7 @@ public class ListeningFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         int type = getArguments().getInt("type");
 
-        ListeningAdapter adapter = new ListeningAdapter(getContext(), type);
+        LearningItemsAdapter adapter = new LearningItemsAdapter(getContext(), type);
 
         binding.list.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.list.setAdapter(adapter);

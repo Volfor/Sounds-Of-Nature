@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".root.MainActivity" />
 
         <activity
-            android:name=".listening.ListeningActivity"
-            android:label="Listening" />
+            android:name=".learning.LearningActivity"
+            android:label="Learn" />
 
         <activity
             android:name=".quiz.QuizActivity"

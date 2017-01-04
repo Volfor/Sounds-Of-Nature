@@ -1,4 +1,4 @@
-package com.github.volfor.sondsofnature;
+package com.github.volfor.sondsofnature.learning;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

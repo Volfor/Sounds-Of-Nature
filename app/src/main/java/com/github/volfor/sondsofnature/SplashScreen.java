@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.volfor.sondsofnature.databinding.SplashScreenBinding;
+import com.github.volfor.sondsofnature.root.MainActivity;
 
 /**
  * Created by Volfor on 03.01.2017.

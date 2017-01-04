@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.volfor.sondsofnature.Utils;
 import com.github.volfor.sondsofnature.models.GameCard;
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.databinding.ItemQuizCardBinding;
@@ -53,6 +54,14 @@ public class QuizTaskAdapter extends RecyclerView.Adapter<QuizTaskAdapter.ViewHo
         }
 
         void bindQuiz(Quiz quiz, GameCard card) {
+            if (quiz.getDifficulty() == Quiz.Difficulty.NORMAL) {
+                binding.cardImage.getLayoutParams().height = (int) Utils.pxFromDp(binding.cardImage.getContext(), 104);
+            } else if (quiz.getDifficulty() == Quiz.Difficulty.HARD) {
+                binding.cardImage.getLayoutParams().height = (int) Utils.pxFromDp(binding.cardImage.getContext(), 128);
+            } else if (quiz.getDifficulty() == Quiz.Difficulty.EXTRA) {
+                binding.cardImage.getLayoutParams().height = (int) Utils.pxFromDp(binding.cardImage.getContext(), 88);
+            }
+
             binding.setItem(new QuizItemViewModel(quiz, card));
         }
     }
