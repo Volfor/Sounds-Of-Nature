@@ -41,22 +41,25 @@ public class Quiz {
     }
 
     public void createTask(Context context) {
-        List<GameCard> animals = Utils.getAnimalCards(context);
-        Collections.shuffle(animals);
+        List<GameCard> cards = new ArrayList<>();
+        cards.addAll(Utils.getAnimalCards(context));
+        cards.addAll(Utils.getTransportCards(context));
 
-        correctCard = animals.get(0);
+        Collections.shuffle(cards);
+
+        correctCard = cards.get(0);
         wrongCards = new ArrayList<>();
 
         switch (getDifficulty()) {
             case EXTRA:
-                wrongCards.add(animals.get(1));
-                wrongCards.add(animals.get(2));
+                wrongCards.add(cards.get(1));
+                wrongCards.add(cards.get(2));
             case HARD:
-                wrongCards.add(animals.get(3));
+                wrongCards.add(cards.get(3));
             case NORMAL:
-                wrongCards.add(animals.get(4));
+                wrongCards.add(cards.get(4));
             case EASY:
-                wrongCards.add(animals.get(5));
+                wrongCards.add(cards.get(5));
             default:
         }
 
@@ -117,6 +120,10 @@ public class Quiz {
         } else {
             return Difficulty.EXTRA;
         }
+    }
+
+    public boolean isFinished() {
+        return correctCount >= 20;
     }
 
     public static void clear() {

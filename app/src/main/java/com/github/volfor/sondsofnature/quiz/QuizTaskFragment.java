@@ -1,9 +1,11 @@
 package com.github.volfor.sondsofnature.quiz;
 
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,19 @@ public class QuizTaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Quiz quiz = Quiz.getInstance();
+        if (quiz.isFinished()) {
+            // show congrats
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Congratz!")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            getActivity().finish();
+                        }
+                    })
+                    .show();
+            return;
+        }
+
         quiz.createTask(getContext());
 
         QuizTaskAdapter adapter = new QuizTaskAdapter(quiz);
