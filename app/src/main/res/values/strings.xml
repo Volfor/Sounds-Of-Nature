@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Sounds of Nature</string>
+    <string name="wrong">Wrong!</string>
+    <string name="correct_answer_is">Correct answer is:</string>
+    <string name="animals">Animals</string>
+    <string name="transport">Transport</string>
+    <string name="all_together">All together</string>
+    <string name="learn">Learn</string>
+    <string name="quiz">Quiz</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_answered_all_questions">You answered all questions</string>
 </resources>

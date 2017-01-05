@@ -22,10 +22,10 @@
 
         <activity
             android:name=".learning.LearningActivity"
-            android:label="Learn" />
+            android:label="@string/learn" />
 
         <activity
             android:name=".quiz.QuizActivity"
-            android:label="Quiz" />
+            android:label="@string/quiz" />
     </application>
 </manifest>

@@ -6,12 +6,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingTop="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wrong!"
+            android:text="@string/wrong"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="16sp" />
 
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Correct answer is:" />
+            android:text="@string/correct_answer_is" />
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"

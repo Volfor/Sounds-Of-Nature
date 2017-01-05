@@ -11,6 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import static com.github.volfor.sondsofnature.root.MainActivity.ANIMALS;
+import static com.github.volfor.sondsofnature.root.MainActivity.TRANSPORT;
+
 /**
  * Created by Volfor on 04.01.2017.
  * http://github.com/Volfor
@@ -41,10 +44,17 @@ public class Quiz {
         return instance;
     }
 
-    public void createTask(Context context) {
+    public void createTask(Context context, int type) {
         List<GameCard> cards = new ArrayList<>();
-        cards.addAll(Utils.getAnimalCards(context));
-        cards.addAll(Utils.getTransportCards(context));
+
+        if (type == ANIMALS) {
+            cards.addAll(Utils.getAnimalCards(context));
+        } else if (type == TRANSPORT) {
+            cards.addAll(Utils.getTransportCards(context));
+        } else {
+            cards.addAll(Utils.getAnimalCards(context));
+            cards.addAll(Utils.getTransportCards(context));
+        }
 
         Collections.shuffle(cards);
 

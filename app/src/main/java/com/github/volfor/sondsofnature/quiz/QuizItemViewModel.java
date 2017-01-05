@@ -2,6 +2,7 @@ package com.github.volfor.sondsofnature.quiz;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.ObservableBoolean;
 import android.view.View;
 
 import com.github.volfor.sondsofnature.events.AnswerEvent;
@@ -17,6 +18,8 @@ import org.greenrobot.eventbus.EventBus;
 
 public class QuizItemViewModel extends BaseObservable {
 
+    public ObservableBoolean correctAnswerVisibility = new ObservableBoolean(false);
+
     private Quiz quiz;
     private GameCard card;
 
@@ -31,6 +34,7 @@ public class QuizItemViewModel extends BaseObservable {
     }
 
     public void onItemClick(View v) {
+        correctAnswerVisibility.set(quiz.check(card));
         EventBus.getDefault().post(new AnswerEvent(quiz.check(card), quiz.getCorrectCard()));
     }
 

@@ -15,8 +15,8 @@ import java.util.List;
 
 import static com.github.volfor.sondsofnature.Utils.getAnimalCards;
 import static com.github.volfor.sondsofnature.Utils.getTransportCards;
-import static com.github.volfor.sondsofnature.learning.LearningActivity.ANIMALS;
-import static com.github.volfor.sondsofnature.learning.LearningActivity.TRANSPORT;
+import static com.github.volfor.sondsofnature.root.MainActivity.ANIMALS;
+import static com.github.volfor.sondsofnature.root.MainActivity.TRANSPORT;
 
 /**
  * Created by Volfor on 03.01.2017.

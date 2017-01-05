@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.github.volfor.sondsofnature.R;
 import com.github.volfor.sondsofnature.databinding.ActivityMainBinding;
+import com.github.volfor.sondsofnature.databinding.ChooseModeDialogBinding;
 import com.github.volfor.sondsofnature.databinding.CongratsDialogBinding;
 import com.github.volfor.sondsofnature.learning.LearningActivity;
 import com.github.volfor.sondsofnature.quiz.QuizActivity;
@@ -17,9 +18,13 @@ import com.github.volfor.sondsofnature.quiz.QuizActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int ANIMALS = 546;
+    public static final int TRANSPORT = 547;
+
     public static final int QUIZ_REQ_CODE = 418;
 
     private ActivityMainBinding binding;
+    private AlertDialog chooseModeDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onQuizButtonClick(View v) {
-        startActivityForResult(new Intent(MainActivity.this, QuizActivity.class), QUIZ_REQ_CODE);
+        showChooseModeDialog();
     }
 
     @Override
@@ -45,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == QUIZ_REQ_CODE && resultCode == RESULT_OK) {
             showCongratsDialog();
         }
+    }
+
+    private void showChooseModeDialog() {
+        ChooseModeDialogBinding binding = DataBindingUtil.inflate(getLayoutInflater(),
+                R.layout.choose_mode_dialog, null, false);
+        binding.setModel(this);
+
+        chooseModeDialog = new AlertDialog.Builder(this)
+                .setView(binding.getRoot())
+                .show();
     }
 
     private void showCongratsDialog() {
@@ -59,6 +74,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public void onAnimalsQuizClick(View v) {
+        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+        intent.putExtra("type", ANIMALS);
+
+        startActivityForResult(intent, QUIZ_REQ_CODE);
+        chooseModeDialog.dismiss();
+    }
+
+    public void onTransportQuizClick(View v) {
+        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+        intent.putExtra("type", TRANSPORT);
+
+        startActivityForResult(intent, QUIZ_REQ_CODE);
+        chooseModeDialog.dismiss();
+    }
+
+    public void onComplexQuizClick(View v) {
+        startActivityForResult(new Intent(MainActivity.this, QuizActivity.class), QUIZ_REQ_CODE);
+        chooseModeDialog.dismiss();
     }
 
 }

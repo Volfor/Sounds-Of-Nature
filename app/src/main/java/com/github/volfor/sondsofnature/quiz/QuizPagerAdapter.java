@@ -1,5 +1,6 @@
 package com.github.volfor.sondsofnature.quiz;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,15 +17,25 @@ public class QuizPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount = 0;
     private List<Fragment> fragments = new ArrayList<>();
+    private int type;
 
-    public QuizPagerAdapter(FragmentManager fm) {
+
+    public QuizPagerAdapter(FragmentManager fm, int type) {
         super(fm);
+        this.type = type;
         addQuizTask();
     }
 
     public void addQuizTask() {
         pageCount++;
-        fragments.add(new QuizTaskFragment());
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", type);
+
+        QuizTaskFragment fragment = new QuizTaskFragment();
+        fragment.setArguments(bundle);
+
+        fragments.add(fragment);
         notifyDataSetChanged();
     }
 

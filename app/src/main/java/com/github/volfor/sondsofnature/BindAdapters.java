@@ -1,8 +1,10 @@
 package com.github.volfor.sondsofnature;
 
 import android.databinding.BindingAdapter;
+import android.databinding.BindingConversion;
 import android.graphics.Typeface;
 import android.support.annotation.DrawableRes;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,11 @@ import com.bumptech.glide.Glide;
  */
 
 public class BindAdapters {
+
+    @BindingConversion
+    public static int convertBooleanToVisibility(boolean visible) {
+        return visible ? View.VISIBLE : View.GONE;
+    }
 
     @BindingAdapter("image")
     public static void bindImage(ImageView v, @DrawableRes int id) {

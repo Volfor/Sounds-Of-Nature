@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Congratulations!"
+                android:text="@string/congratulations"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="16sp" />
 
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="You answered all questions" />
+                android:text="@string/you_answered_all_questions" />
         </LinearLayout>
     </LinearLayout>
 </layout>

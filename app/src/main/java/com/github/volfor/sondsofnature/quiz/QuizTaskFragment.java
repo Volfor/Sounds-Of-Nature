@@ -44,7 +44,7 @@ public class QuizTaskFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        quiz.createTask(getContext());
+        quiz.createTask(getContext(), (int) getArguments().get("type"));
 
         QuizTaskAdapter adapter = new QuizTaskAdapter(quiz);
         GridLayoutManager lm;

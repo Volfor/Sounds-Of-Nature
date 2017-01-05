@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:onClick="@{model::onLearnButtonClick}"
-                    android:text="Learn"
+                    android:text="@string/learn"
                     fbutton:buttonColor="@color/light_green_400"
                     fbutton:cornerRadius="0dp"
                     fbutton:shadowEnabled="false" />
@@ -50,7 +50,7 @@
                     android:layout_width="186dp"
                     android:layout_height="wrap_content"
                     android:onClick="@{model::onQuizButtonClick}"
-                    android:text="Quiz"
+                    android:text="@string/quiz"
                     fbutton:buttonColor="@color/deep_orange_400"
                     fbutton:cornerRadius="0dp"
                     fbutton:shadowEnabled="false" />

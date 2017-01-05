@@ -16,15 +16,15 @@ import com.github.volfor.sondsofnature.events.ListenEvent;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import static com.github.volfor.sondsofnature.root.MainActivity.ANIMALS;
+import static com.github.volfor.sondsofnature.root.MainActivity.TRANSPORT;
+
 /**
  * Created by Volfor on 03.01.2017.
  * http://github.com/Volfor
  */
 
 public class LearningActivity extends EventActivity {
-
-    public static final int ANIMALS = 546;
-    public static final int TRANSPORT = 547;
 
     private ActivityLearningBinding binding;
     private MediaPlayer player;

@@ -41,7 +41,9 @@ public class QuizActivity extends EventActivity {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        adapter = new QuizPagerAdapter(getSupportFragmentManager());
+        int type = getIntent().getExtras() == null ? 0 : (int) getIntent().getExtras().get("type");
+
+        adapter = new QuizPagerAdapter(getSupportFragmentManager(), type);
         binding.quizPager.setAdapter(adapter);
     }
 
