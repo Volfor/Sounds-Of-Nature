@@ -47,12 +47,18 @@ public class QuizTaskFragment extends Fragment {
         quiz.createTask(getContext(), (int) getArguments().get("type"));
 
         QuizTaskAdapter adapter = new QuizTaskAdapter(quiz);
-        GridLayoutManager lm;
 
-        if (adapter.getItemCount() % 2 == 0) {
-            lm = new GridLayoutManager(getContext(), 2);
-        } else {
-            lm = new GridLayoutManager(getContext(), 3);
+        GridLayoutManager lm = new GridLayoutManager(getContext(), 2);
+        if (adapter.getItemCount() % 2 != 0) {
+            lm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (position == 2) {
+                        return 2; // the item in position now takes up 2 spans
+                    }
+                    return 1;
+                }
+            });
         }
 
         binding.quizList.setLayoutManager(lm);

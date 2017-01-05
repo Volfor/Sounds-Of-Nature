@@ -34,6 +34,10 @@ public class QuizItemViewModel extends BaseObservable {
     }
 
     public void onItemClick(View v) {
+        if (quiz.check(card)) {
+            quiz.correctCount++;
+        }
+
         correctAnswerVisibility.set(quiz.check(card));
         EventBus.getDefault().post(new AnswerEvent(quiz.check(card), quiz.getCorrectCard()));
     }

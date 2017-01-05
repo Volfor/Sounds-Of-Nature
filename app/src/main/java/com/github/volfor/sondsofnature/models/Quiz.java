@@ -31,7 +31,7 @@ public class Quiz {
         EXTRA
     }
 
-    private int correctCount = 0;
+    public int correctCount = 0;
     private GameCard correctCard;
     private List<GameCard> wrongCards;
 
@@ -96,13 +96,7 @@ public class Quiz {
 
     public boolean check(GameCard answer) {
         Utils.releasePlayer(player);
-
-        if (answer.equals(correctCard)) {
-            correctCount++;
-            return true;
-        } else {
-            return false;
-        }
+        return answer.equals(correctCard);
     }
 
     public GameCard getCorrectCard() {
